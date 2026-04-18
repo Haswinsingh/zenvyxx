@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_URL = "https://zenvyxx.onrender.com";
 
 export const submitRegistration = async (formData) => {
   console.log("Registered VITE_API_URL:", import.meta.env.VITE_API_URL);

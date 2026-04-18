@@ -1,12 +1,4 @@
 import { motion } from "framer-motion";
-import core1 from "../assets/core1.png";
-import core2 from "../assets/core2.png";
-import core3 from "../assets/core3.png";
-import core4 from "../assets/core4.png";
-import magic1 from "../assets/magic1.jpeg";
-import magic2 from "../assets/magic2.jpeg";
-import magic3 from "../assets/magic3.jpeg";
-import magic4 from "../assets/magic4.jpeg";
 
 const cardStyle =
   "relative rounded-xl overflow-hidden group cursor-pointer border-2 border-transparent transition-all duration-300 hover:border-primary hover:shadow-[0_0_20px_rgba(0,245,255,0.5)]";
@@ -49,7 +41,7 @@ export default function Coordinators() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
           >
-            <img src={core1} className={imageStyle} alt="Core Member 1" />
+            <img src="/assets/core1.png" className={imageStyle} alt="Core Member 1" />
             <div className={overlay}></div>
             <div className={textBox}>
               <h3 className={titleStyle}>Dr. B. Latha</h3>
@@ -64,7 +56,7 @@ export default function Coordinators() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
           >
-            <img src={core2} className={imageStyle} alt="Core Member 2" />
+            <img src="/assets/core2.png" className={imageStyle} alt="Core Member 2" />
             <div className={overlay}></div>
             <div className={textBox}>
               <h3 className={titleStyle}>Member Name</h3>
@@ -79,7 +71,7 @@ export default function Coordinators() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
           >
-            <img src={core3} className={imageStyle} alt="Core Member 3" />
+            <img src="/assets/core3.png" className={imageStyle} alt="Core Member 3" />
             <div className={overlay}></div>
             <div className={textBox}>
               <h3 className={titleStyle}>Member Name</h3>
@@ -94,7 +86,7 @@ export default function Coordinators() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
           >
-            <img src={core4} className={imageStyle} alt="Core Member 4" />
+            <img src="/assets/core4.png" className={imageStyle} alt="Core Member 4" />
             <div className={overlay}></div>
             <div className={textBox}>
               <h3 className={titleStyle}>Member Name</h3>
@@ -136,7 +128,7 @@ export default function Coordinators() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
           >
-            <img src={magic1} className={imageStyle} alt="Magic Member 1" />
+            <img src="/assets/magic1.jpeg" className={imageStyle} alt="Magic Member 1" />
             <div className={overlay}></div>
             <div className={textBox}>
               <h3 className={magicTitleStyle}>Member Name</h3>
@@ -151,7 +143,7 @@ export default function Coordinators() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
           >
-            <img src={magic2} className={imageStyle} alt="Magic Member 2" />
+            <img src="/assets/magic2.jpeg" className={imageStyle} alt="Magic Member 2" />
             <div className={overlay}></div>
             <div className={textBox}>
               <h3 className={magicTitleStyle}>Member Name</h3>
@@ -166,7 +158,7 @@ export default function Coordinators() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
           >
-            <img src={magic3} className={imageStyle} alt="Magic Member 3" />
+            <img src="/assets/magic3.jpeg" className={imageStyle} alt="Magic Member 3" />
             <div className={overlay}></div>
             <div className={textBox}>
               <h3 className={magicTitleStyle}>Member Name</h3>
@@ -181,7 +173,7 @@ export default function Coordinators() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
           >
-            <img src={magic4} className={imageStyle} alt="Magic Member 4" />
+            <img src="/assets/magic4.jpeg" className={imageStyle} alt="Magic Member 4" />
             <div className={overlay}></div>
             <div className={textBox}>
               <h3 className={magicTitleStyle}>Member Name</h3>
