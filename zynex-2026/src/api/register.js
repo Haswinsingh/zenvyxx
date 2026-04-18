@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = "https://zenvyxx.onrender.com";
 
 export const submitRegistration = async (formData) => {
   console.log("Registered VITE_API_URL:", import.meta.env.VITE_API_URL);
@@ -21,9 +21,9 @@ export const submitRegistration = async (formData) => {
 
     return data;
   } catch (error) {
-    console.error("[API Network/Fetch Error]", error.message);
+    console.error("[API Network/Fetch Error Full]:", error);
     if (error.message.includes("Failed to fetch")) {
-      throw new Error("Network error. The server is unreachable.");
+      throw new Error("Network error. The server is unreachable or CORS blocked the request.");
     }
     throw error;
   }
