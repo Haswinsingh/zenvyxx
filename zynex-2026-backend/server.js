@@ -8,8 +8,13 @@ import fs from "fs";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(express.json());
+
+// Health check route
+app.get("/", (req, res) => {
+  res.status(200).send("Backend is working");
+});
 
 // using credentials.json for Google Service Account
 const auth = new google.auth.GoogleAuth({
@@ -27,6 +32,7 @@ app.post("/register", async (req, res) => {
     }
 
     const data = req.body;
+    console.log("Receiving registration request:", data);
 
     // Create an ordered array of values to ensure they match google sheet columns
     // Team Name | Leader Name | Year | Student ID | Email | Phone | Team Size |
