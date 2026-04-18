@@ -1,8 +1,9 @@
-const API_URL = "https://zenvyxx.onrender.com";
+// Hybrid API URL (Production-safe + fallback)
+const API_URL = import.meta.env.VITE_API_URL || "https://zenvyxx.onrender.com";
 
 export const submitRegistration = async (formData) => {
-  console.log("Registered VITE_API_URL:", import.meta.env.VITE_API_URL);
-  console.log(`[API Init] Connecting to: ${API_URL}/register`);
+  console.log("🚀 Sending request to:", `${API_URL}/register`);
+
   try {
     const response = await fetch(`${API_URL}/register`, {
       method: "POST",
@@ -12,19 +13,33 @@ export const submitRegistration = async (formData) => {
       body: JSON.stringify(formData),
     });
 
-    const data = await response.json();
-
-    if (!response.ok || !data.success) {
-      console.error("[API Server Error]", data.error);
-      throw new Error(data.error || "Server responded with an error");
+    // 🔥 Check if response is valid JSON
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      throw new Error("Invalid JSON response from server");
     }
 
+    // 🔥 Handle server errors properly
+    if (!response.ok) {
+      console.error("❌ Server Error:", data);
+      throw new Error(data?.error || "Server responded with an error");
+    }
+
+    console.log("✅ Success:", data);
     return data;
+
   } catch (error) {
-    console.error("[API Network/Fetch Error Full]:", error);
+    console.error("❌ Network/Fetch Error:", error);
+
+    // 🔥 Better error message
     if (error.message.includes("Failed to fetch")) {
-      throw new Error("Network error. The server is unreachable or CORS blocked the request.");
+      throw new Error(
+        "Server unreachable ⚠️ (Render may be sleeping or CORS issue)"
+      );
     }
+
     throw error;
   }
 };
