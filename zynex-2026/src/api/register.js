@@ -1,0 +1,24 @@
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
+export const submitRegistration = async (formData) => {
+  try {
+    const response = await fetch(`${API_URL}/api/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.error || "Failed to register");
+    }
+
+    return data;
+  } catch (error) {
+    console.error("API Error in submitRegistration:", error);
+    throw error;
+  }
+};

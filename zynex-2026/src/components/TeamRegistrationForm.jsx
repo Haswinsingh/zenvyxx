@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { submitRegistration } from "../api/register";
 
 export default function TeamRegistrationForm() {
   const [teamSize, setTeamSize] = useState(2);
@@ -30,6 +31,8 @@ export default function TeamRegistrationForm() {
     setFormData({ ...formData, members: updatedMembers });
   };
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -38,6 +41,7 @@ export default function TeamRegistrationForm() {
       return;
     }
 
+    setIsSubmitting(true);
     try {
       const finalData = {
         ...formData,
@@ -45,44 +49,29 @@ export default function TeamRegistrationForm() {
         members: formData.members.slice(0, teamSize),
       };
 
-      // In production (Vercel), you might want to use relative paths if using serverless functions,
-      // or specify your deployed backend URL. We default to localhost:5000 for local development.
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000/register";
+      await submitRegistration(finalData);
 
-      const res = await fetch(backendUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(finalData),
+      alert("Registration Successful ✅");
+      
+      // Reset Form Data
+      setFormData({
+        teamName: "",
+        leaderName: "",
+        yearDept: "",
+        studentId: "",
+        email: "",
+        phone: "",
+        members: [
+          { name: "", yearDept: "", studentId: "", email: "", phone: "" },
+          { name: "", yearDept: "", studentId: "", email: "", phone: "" },
+          { name: "", yearDept: "", studentId: "", email: "", phone: "" },
+        ],
       });
-
-      const data = await res.json();
-
-      if (data.success) {
-        alert("Registered Successfully 🚀 Check your email for confirmation (spam folder included)!");
-        
-        // Reset Form Data
-        setFormData({
-          teamName: "",
-          leaderName: "",
-          yearDept: "",
-          studentId: "",
-          email: "",
-          phone: "",
-          members: [
-            { name: "", yearDept: "", studentId: "", email: "", phone: "" },
-            { name: "", yearDept: "", studentId: "", email: "", phone: "" },
-            { name: "", yearDept: "", studentId: "", email: "", phone: "" },
-          ],
-        });
-        setTeamSize(2);
-      } else {
-        alert("Oops! Registration failed: " + (data.error || "Unknown error"));
-      }
+      setTeamSize(2);
     } catch (error) {
-      console.error("Registration error", error);
-      alert("Registration Failed! The server might be unreachable.");
+      alert("Registration failed ❌");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -162,12 +151,13 @@ export default function TeamRegistrationForm() {
       ) : (
         <button
           type="submit"
-          className="w-full mt-8 group relative px-8 py-4 bg-transparent font-orbitron font-bold tracking-widest uppercase overflow-hidden"
+          disabled={isSubmitting}
+          className={`w-full mt-8 group relative px-8 py-4 bg-transparent font-orbitron font-bold tracking-widest uppercase overflow-hidden ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
         >
           <div className="absolute inset-0 w-full h-full border-2 border-primary group-hover:bg-primary/20 transition-all duration-300 shadow-[0_0_15px_rgba(0,245,255,0.5)]" />
           <div className="absolute -left-[100%] top-0 w-full h-full bg-gradient-to-r from-transparent via-primary/40 to-transparent group-hover:left-[100%] transition-all duration-700 ease-in-out" />
           <span className="relative z-10 text-primary group-hover:text-white transition-colors duration-300 drop-shadow-[0_0_8px_rgba(0,245,255,0.8)]">
-            INITIALIZE UPLINK
+            {isSubmitting ? "INITIALIZING..." : "INITIALIZE UPLINK"}
           </span>
         </button>
       )}
