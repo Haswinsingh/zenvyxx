@@ -1,8 +1,8 @@
-// Hybrid API URL (Production-safe + fallback)
-const API_URL = import.meta.env.VITE_API_URL && "https://zenvyxx.onrender.com";
+// Hybrid API URL (Production-safe + fallback) - VERSION: 2.1.0-FIX
+const API_URL = import.meta.env.VITE_API_URL || "https://zenvyxx.onrender.com";
 
 export const submitRegistration = async (formData) => {
-  console.log("🚀 Sending request to:", `${API_URL}/register`);
+  console.log("🚀 [VER 2.1.0] Sending request to:", `${API_URL}/register`);
 
   try {
     const response = await fetch(`${API_URL}/register`, {
