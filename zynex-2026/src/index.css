@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)];
+  }
+  
+  .glass-card {
+    @apply bg-slate-900/40 backdrop-blur-md border border-cyan-500/20 shadow-[0_8px_32px_0_rgba(0,245,255,0.1)];
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600;
+  }
+
+  .neon-border {
+    @apply border border-cyan-500 shadow-[0_0_10px_rgba(0,245,255,0.5),inset_0_0_10px_rgba(0,245,255,0.2)];
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #0A0F1C;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar for Cyberpunk vibe */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0F1C;
+}
+::-webkit-scrollbar-thumb {
+  background: #00F5FF;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8A2BE2;
+}
