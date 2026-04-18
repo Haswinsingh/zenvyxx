@@ -1,6 +1,7 @@
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 export const submitRegistration = async (formData) => {
+  console.log("Registered VITE_API_URL:", import.meta.env.VITE_API_URL);
   console.log(`[API Init] Connecting to: ${API_URL}/register`);
   try {
     const response = await fetch(`${API_URL}/register`, {
