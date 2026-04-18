@@ -1,5 +1,5 @@
 // Hybrid API URL (Production-safe + fallback)
-const API_URL = import.meta.env.VITE_API_URL || "https://zenvyxx.onrender.com";
+const API_URL = import.meta.env.VITE_API_URL && "https://zenvyxx.onrender.com";
 
 export const submitRegistration = async (formData) => {
   console.log("🚀 Sending request to:", `${API_URL}/register`);
