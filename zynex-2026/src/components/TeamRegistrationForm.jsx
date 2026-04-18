@@ -69,7 +69,7 @@ export default function TeamRegistrationForm() {
       });
       setTeamSize(2);
     } catch (error) {
-      alert("Registration failed ❌");
+      alert(`Registration failed ❌\nReason: ${error.message}`);
     } finally {
       setIsSubmitting(false);
     }
